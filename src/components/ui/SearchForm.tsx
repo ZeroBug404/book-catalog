@@ -17,7 +17,7 @@ const SearchForm = () => {
           required
         />
         <div className="absolute inset-y-0 right-5 flex items-center cursor-pointer">
-          <BsSearch className="text-lg text-red-500" />
+          <BsSearch className="text-lg text-blue-500" />
         </div>
       </div>
     </form>
