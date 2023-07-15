@@ -20,9 +20,9 @@ const TopNavbar = () => {
           </a>
         </div>
 
-        <div>
-          <SearchForm />
+        <div className="flex justify-center items-center gap-5">
           <FilterOption />
+          <SearchForm />
         </div>
 
         <div className="flex gap-4 items-center justify-between">
