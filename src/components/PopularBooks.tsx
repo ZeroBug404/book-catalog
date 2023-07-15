@@ -1,6 +1,11 @@
+import { useGetBooksQuery } from "../redux/features/book/bookApi";
+import { IBook } from "../types/globalTypes";
 import BookCard from "./ui/BookCard";
 
 const PopularBooks = () => {
+  const { data, isLoading, error } = useGetBooksQuery(undefined);
+
+
   return (
     <div className="px-6 py-5">
       <div className="flex justify-between items-center gap-5 mb-10">
@@ -24,14 +29,9 @@ const PopularBooks = () => {
       </div>
 
       <div className="grid grid-cols-6 gap-y-3">
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
-        <BookCard />
+        {data?.data?.data?.map((book: IBook) => (
+          <BookCard book={book} key={book._id} />
+        ))}
       </div>
     </div>
   );
