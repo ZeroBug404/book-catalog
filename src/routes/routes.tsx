@@ -2,8 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import Signup from "../pages/Signup";
 import NotFound from "../pages/NotFound";
+import Signup from "../pages/Signup";
+import BookDetails from "../pages/BookDetails";
 
 const routes = createBrowserRouter([
   {
@@ -14,10 +15,10 @@ const routes = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      // {
-      //   path: '/products',
-      //   element: <Products />,
-      // },
+      {
+        path: "book-details",
+        element: <BookDetails />
+      },
       // {
       //   path: '/product-details/:id',
       //   element: <ProductDetails />,
