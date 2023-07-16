@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Signup from "../pages/Signup";
 import BookDetails from "../pages/BookDetails";
+import AllBooks from "../pages/AllBooks";
 
 const routes = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "book-details",
+        path: "all-books",
+        element: <AllBooks />
+      },
+      {
+        path: "book-details/:id",
         element: <BookDetails />
       },
       // {

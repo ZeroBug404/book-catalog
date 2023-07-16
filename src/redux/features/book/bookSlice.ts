@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface IBookData {
   searchData: string;
-  setFilterData: string
+  setFilterData: string;
 }
 
 const initialState: IBookData = {
@@ -16,15 +16,15 @@ export const bookSlice = createSlice({
   initialState,
   reducers: {
     setSearchData: (state, action: PayloadAction<string>) => {
-      if (action.payload === '') {
-        state.searchData = '';
+      if (action.payload === "") {
+        state.searchData = "";
       } else {
         state.searchData = action.payload;
       }
     },
     setFilterData: (state, action: PayloadAction<string>) => {
-      if (action.payload === '') {
-        state.setFilterData = '';
+      if (action.payload === "") {
+        state.setFilterData = "";
       } else {
         state.setFilterData = action.payload;
       }

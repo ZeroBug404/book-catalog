@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import { useGetBooksQuery } from "../../redux/features/book/bookApi";
@@ -25,7 +28,17 @@ const FilterOption = () => {
     isLoading,
     error,
   } = useGetBooksQuery({ searchData: "" });
-  console.log(booksData);
+
+  const [checkboxValue, setCheckboxValue] = useState("");
+
+  const handleCheckboxChange = (event) => {
+    if (event.target.checked) {
+      setCheckboxValue(event.target.nextSibling.textContent);
+    } else {
+      setCheckboxValue("");
+    }
+  };
+  console.log(checkboxValue);
 
   return (
     <div>
@@ -85,7 +98,7 @@ const FilterOption = () => {
                             <input
                               id="checkbox-item-3"
                               type="checkbox"
-                              value=""
+                              onChange={handleCheckboxChange}
                               className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                             />
                             <label

@@ -1,6 +1,12 @@
-import book from "../assets/25.jpg";
+import { useParams } from "react-router-dom";
+import bookImg from "../assets/25.jpg";
+import { useGetSingleBookQuery } from "../redux/features/book/bookApi";
 
 const BookDetails = () => {
+  const { id } = useParams();
+
+  const { data: bookImg, isLoading, error } = useGetSingleBookQuery(id);
+
   return (
     <div className="px-6 flex gap-8">
       <div className="border rounded-lg w-1/3 p-5">
