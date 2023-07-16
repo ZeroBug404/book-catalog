@@ -19,7 +19,27 @@ const BookDetails = () => {
             <p className="font-semibold text-4xl text-gray-700 mb-5">
               {data?.data?.title}
             </p>
-            
+            <div className="flex gap-2">
+              <button
+                className="bg-green-500 px-6 py-2 text-white font-semibold rounded-md hover:bg-green-700"
+                style={{
+                  backgroundColor: '#3DA72F',
+                  transition: 'background-color 0.3s',
+                }}
+                onMouseEnter={(e) => { e.target.style.backgroundColor = '#308125'; }}
+                onMouseLeave={(e) => { e.target.style.backgroundColor = '#3DA72F'; }}
+              >
+                Edit
+              </button>
+              <button className="bg-red-500 px-6 py-2 text-white font-semibold rounded-md hover:bg-green-700" style={{
+                  backgroundColor: '#DD3C2D',
+                  transition: 'background-color 0.3s',
+                }}
+                onMouseEnter={(e) => { e.target.style.backgroundColor = '#AC2F23'; }}
+                onMouseLeave={(e) => { e.target.style.backgroundColor = '#DD3C2D'; }}>
+                Delete
+              </button>
+            </div>
           </div>
           <p className="text-gray-400">
             Author: <span className="text-gray-700">{data?.data?.author}</span>
