@@ -1,11 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { api } from "../../api/apiSlice";
 
 const bookApi = api.injectEndpoints({
-  endpoints: (builder: { query: (arg0: { query: () => string }) => any }) => ({
-    getBooks: builder.query({
-      query: () => "/books",
+  endpoints: (builder) => ({
+    // getBooks: builder.query<any, { searchData: string }>({
+    //     query: () => `/books`,
+    // }),
+    getBooks: builder.query<any, { searchData: string }>({
+        query: ({ searchData }) => `/books?searchTerm=${searchData}`,
     }),
   }),
 });

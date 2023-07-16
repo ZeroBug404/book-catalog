@@ -1,11 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useGetBooksQuery } from "../redux/features/book/bookApi";
+import { useAppSelector } from "../redux/hook";
 import { IBook } from "../types/globalTypes";
 import BookCard from "./ui/BookCard";
 
 const PopularBooks = () => {
-  const { data, isLoading, error } = useGetBooksQuery(undefined);
-
-
+  const { searchData } = useAppSelector((state) => state.book);
+  console.log(searchData);
+  
+  const { data, isLoading, error } = useGetBooksQuery({ searchData });
+  
   return (
     <div className="px-6 py-5">
       <div className="flex justify-between items-center gap-5 mb-10">

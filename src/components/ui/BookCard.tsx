@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useState } from "react";
 import bookImg from "../../assets/25.jpg";
 import { IBook } from "../../types/globalTypes";
 
-const BookCard = ({ book }: { book: IBook }) => {
+const BookCard = ({ book }: IBook) => {
+  
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="border-l px-5 border-r mb-8">

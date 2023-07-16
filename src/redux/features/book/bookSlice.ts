@@ -1,22 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit'
-// import type { PayloadAction } from '@reduxjs/toolkit'
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export interface CounterState {
-  value: number
+export interface IBookData {
+  searchData: string;
+  setFilterData: string
 }
 
-const initialState: CounterState = {
-  value: 0,
-}
+const initialState: IBookData = {
+  searchData: "",
+  setFilterData: "",
+};
 
 export const bookSlice = createSlice({
-  name: 'book',
+  name: "book",
   initialState,
   reducers: {
-
+    setSearchData: (state, action: PayloadAction<string>) => {
+      if (action.payload === '') {
+        state.searchData = '';
+      } else {
+        state.searchData = action.payload;
+      }
+    },
+    setFilterData: (state, action: PayloadAction<string>) => {
+      if (action.payload === '') {
+        state.setFilterData = '';
+      } else {
+        state.setFilterData = action.payload;
+      }
+    },
   },
-})
+});
 
-// export const {} = bookSlice.actions
+export const { setSearchData, setFilterData } = bookSlice.actions;
 
-export default bookSlice.reducer
+export default bookSlice.reducer;

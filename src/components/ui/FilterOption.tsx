@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { FiFilter } from "react-icons/fi";
+import { useGetBooksQuery } from "../../redux/features/book/bookApi";
 
 const FilterOption = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isGenreDoubleDropdownOpen, setIsGenreDoubleDropdownOpen] = useState(false);
-  const [isYaerDoubleDropdownOpen, setIsYearDoubleDropdownOpen] = useState(false);
-
+  const [isGenreDoubleDropdownOpen, setIsGenreDoubleDropdownOpen] =
+    useState(false);
+  const [isYaerDoubleDropdownOpen, setIsYearDoubleDropdownOpen] =
+    useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -17,6 +19,14 @@ const FilterOption = () => {
   const toggleYearDoubleDropdown = () => {
     setIsYearDoubleDropdownOpen(!isYaerDoubleDropdownOpen);
   };
+
+  const {
+    data: booksData,
+    isLoading,
+    error,
+  } = useGetBooksQuery({ searchData: "" });
+  console.log(booksData);
+
   return (
     <div>
       <div className="relative">
@@ -69,38 +79,24 @@ const FilterOption = () => {
                       className="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                       aria-labelledby="doubleDropdownButton"
                     >
-                      <li>
-                        <div className="flex items-center">
-                          <input
-                            id="checkbox-item-3"
-                            type="checkbox"
-                            value=""
-                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                          />
-                          <label
-                            htmlFor="checkbox-item-3"
-                            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                          >
-                            Fiction
-                          </label>
-                        </div>
-                      </li>
-                      <li>
-                        <div className="flex items-center">
-                          <input
-                            id="checkbox-item-3"
-                            type="checkbox"
-                            value=""
-                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                          />
-                          <label
-                            htmlFor="checkbox-item-3"
-                            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                          >
-                            Story
-                          </label>
-                        </div>
-                      </li>
+                      {booksData?.data?.data?.map((book) => (
+                        <li>
+                          <div className="flex items-center">
+                            <input
+                              id="checkbox-item-3"
+                              type="checkbox"
+                              value=""
+                              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                            />
+                            <label
+                              htmlFor="checkbox-item-3"
+                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                            >
+                              {book.genre}
+                            </label>
+                          </div>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 )}
@@ -111,7 +107,7 @@ const FilterOption = () => {
                   className="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   onClick={toggleYearDoubleDropdown}
                 >
-                  Genre
+                  Year
                   <svg
                     className="w-2.5 h-2.5 ml-2.5"
                     aria-hidden="true"
