@@ -6,9 +6,11 @@ import { IBook } from "../../types/globalTypes";
 
 const BookCard = ({ book }: IBook) => {
   const [isHovered, setIsHovered] = useState(false);
+  console.log(book._id);
+  
   return (
     <div className="border-l px-5 border-r mb-8">
-      <Link to={`/product-details/${book._id}`}>
+      <Link to={`/book-details/${book._id}`}>
         <div
           className="relative"
           onMouseEnter={() => setIsHovered(true)}
