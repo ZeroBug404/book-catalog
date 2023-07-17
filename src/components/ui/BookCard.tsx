@@ -7,7 +7,7 @@ import { IBook } from "../../types/globalTypes";
 const BookCard = ({ book }: IBook) => {
   const [isHovered, setIsHovered] = useState(false);
   console.log(book._id);
-  
+
   return (
     <div className="border-l px-5 border-r mb-8">
       <Link to={`/book-details/${book._id}`}>
@@ -17,11 +17,6 @@ const BookCard = ({ book }: IBook) => {
           onMouseLeave={() => setIsHovered(false)}
         >
           <img src={bookImg} alt="" className="w-48 rounded-xl" />
-          {isHovered && (
-            <button className="absolute bg-blue-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2 top-1/2 left-full -translate-y-1/2 transform translate-x-0 opacity-100">
-              Button
-            </button>
-          )}
         </div>
         <div>
           <p className="font-semibold text-lg text-gray-700">{book.title}</p>

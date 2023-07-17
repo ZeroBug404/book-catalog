@@ -55,6 +55,9 @@ const EditBook = () => {
     };
 
     updateBookData(options);
+    if (isError) {
+        toast.error("Book Deatil Update faild");
+    }
     setFormData({
       title: "",
       author: "",
@@ -62,7 +65,7 @@ const EditBook = () => {
       publicationDate: "",
     });
 
-    toast.success("New Book Added");
+    toast.success("Book Deatil Updated");
   };
   return (
     <div className="flex justify-center items-center h-screen">
@@ -86,6 +89,7 @@ const EditBook = () => {
             name="title"
             value={formData.title}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
@@ -103,6 +107,7 @@ const EditBook = () => {
             name="author"
             value={formData.author}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
@@ -120,6 +125,7 @@ const EditBook = () => {
             name="genre"
             value={formData.genre}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
@@ -137,6 +143,7 @@ const EditBook = () => {
             name="publicationDate"
             value={formData.publicationDate}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="flex items-center justify-center">
@@ -145,7 +152,7 @@ const EditBook = () => {
             type="submit"
             style={{ backgroundColor: "blue" }}
           >
-            Add Book
+            Update Book
           </button>
         </div>
       </form>
