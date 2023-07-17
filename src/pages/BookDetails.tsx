@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import bookImg from "../assets/25.jpg";
 import profile from "../assets/profile.png";
@@ -11,7 +11,7 @@ import {
 const BookDetails = () => {
   const { id } = useParams();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { data, isLoading, error } = useGetSingleBookQuery(id);
 
@@ -45,7 +45,7 @@ const BookDetails = () => {
   const handleBookDelete = () => {
     deleteBook(id);
     setModalIsOpen(false);
-    navigate('/all-books')
+    navigate("/all-books");
     toast?.success("Book deleted successfully!");
   };
 
@@ -74,7 +74,7 @@ const BookDetails = () => {
                   e.target.style.backgroundColor = "#3DA72F";
                 }}
               >
-                Edit
+                <Link to={`/edit-book/${data?.data?._id}`}>Edit</Link>
               </button>
               <button
                 className="bg-red-500 px-6 py-2 text-white font-semibold rounded-md hover:bg-green-700"
