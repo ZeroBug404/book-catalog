@@ -38,7 +38,7 @@ const FilterOption = () => {
       setCheckboxValue("");
     }
   };
-  console.log(checkboxValue);
+  // console.log(checkboxValue);
 
   return (
     <div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useAddNewBookMutation } from "../redux/features/book/bookApi";
 import { toast } from "react-toastify";
+import { useAddNewBookMutation } from "../redux/features/book/bookApi";
+import { useAppSelector } from "../redux/hook";
 
 const AddBook = () => {
   const [formData, setFormData] = useState({
@@ -9,10 +10,13 @@ const AddBook = () => {
     genre: "",
     publicationDate: "",
     reviews: [],
+    userEmail: "",
   });
 
   const [postBookData, { isLoading, isError, isSuccess }] =
     useAddNewBookMutation();
+
+  const { user } = useAppSelector((state) => state.user);
 
   const handleChange = (e) => {
     setFormData({
@@ -30,6 +34,7 @@ const AddBook = () => {
       genre: formData.genre,
       publicationDate: formData.publicationDate,
       reviews: [],
+      userEmail: user.email,
     };
 
     postBookData(options);
@@ -38,10 +43,9 @@ const AddBook = () => {
       author: "",
       genre: "",
       publicationDate: "",
-      reviews: [],
     });
 
-    toast.success('New Book Added')
+    toast.success("New Book Added");
   };
   return (
     <div className="flex justify-center items-center h-screen">

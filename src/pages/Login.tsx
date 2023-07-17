@@ -36,7 +36,7 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
         <form onSubmit={handleSubmit}>
           
           <div className="mb-4">
@@ -78,7 +78,7 @@ const Login = () => {
               className="bg-blue-500 text-white font-semibold py-2 px-4 rounded mb-3"
               style={{ backgroundColor: "bule" }}
             >
-              Sign Up
+              Login
             </button>
           </div>
         </form>

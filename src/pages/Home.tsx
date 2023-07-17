@@ -1,10 +1,9 @@
 import PopularBooks from "../components/PopularBooks";
-import BannerSlider from "../components/ui/BannerSlider";
 
 const Home = () => {
   return (
     <div>
-      <BannerSlider />
+      {/* <BannerSlider /> */}
       <PopularBooks />
     </div>
   );
