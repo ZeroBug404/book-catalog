@@ -6,6 +6,7 @@ import profile from "../assets/profile.png";
 import {
   useDeleteBookMutation,
   useGetSingleBookQuery,
+  useUpdateBookReviewMutation,
 } from "../redux/features/book/bookApi";
 
 const BookDetails = () => {
@@ -13,10 +14,18 @@ const BookDetails = () => {
 
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useGetSingleBookQuery(id);
+  const { data, isLoading, error } = useGetSingleBookQuery(id, {
+    refetchOnMountOrArgChange: true,
+    pollingInterval: 1000,
+  });
 
   const [deleteBook, { isBookLoading, isError, isSuccess }] =
     useDeleteBookMutation();
+
+  const [
+    updateBookReview,
+    { isBookReviewLoading, isBookReviewError, isBookReviewSuccess },
+  ] = useUpdateBookReviewMutation();
 
   const [reviewText, setReviewText] = useState("");
 
@@ -25,10 +34,16 @@ const BookDetails = () => {
   };
 
   const handleSubmit = (e) => {
+    console.log(reviewText);
+
     e.preventDefault();
-    // Perform any necessary actions with the reviewText, such as sending it to a server or updating the state in a parent component
-    console.log("Review:", reviewText);
-    // Reset the input field
+
+    const options = {
+      id: id,
+      data: { reviews: reviewText },
+    };
+
+    updateBookReview(options);
     setReviewText("");
   };
 
