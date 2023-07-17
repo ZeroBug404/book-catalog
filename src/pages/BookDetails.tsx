@@ -1,13 +1,22 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import bookImg from "../assets/25.jpg";
 import profile from "../assets/profile.png";
-import { useGetSingleBookQuery } from "../redux/features/book/bookApi";
+import {
+  useDeleteBookMutation,
+  useGetSingleBookQuery,
+} from "../redux/features/book/bookApi";
 
 const BookDetails = () => {
   const { id } = useParams();
 
+  const navigate = useNavigate()
+
   const { data, isLoading, error } = useGetSingleBookQuery(id);
+
+  const [deleteBook, { isBookLoading, isError, isSuccess }] =
+    useDeleteBookMutation();
 
   const [reviewText, setReviewText] = useState("");
 
@@ -31,6 +40,13 @@ const BookDetails = () => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const handleBookDelete = () => {
+    deleteBook(id);
+    setModalIsOpen(false);
+    navigate('/all-books')
+    toast?.success("Book deleted successfully!");
   };
 
   return (
@@ -108,8 +124,8 @@ const BookDetails = () => {
                         Are you sure you want to delete this Book?
                       </h3>
                       <button
-                        onClick={closeModal}
                         className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
+                        onClick={handleBookDelete}
                       >
                         Yes, I'm sure
                       </button>
