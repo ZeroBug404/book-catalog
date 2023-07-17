@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../redux/features/user/userSlice";
 import { useAppDispatch } from "../redux/hook";
 
@@ -91,13 +91,19 @@ const Signup = () => {
           </div>
           <div className="flex justify-center">
             <button
-              className="bg-blue-500 text-white font-semibold py-2 px-4 rounded"
+              className="bg-blue-500 text-white font-semibold py-2 px-4 rounded mb-3"
               style={{ backgroundColor: "bule" }}
             >
               Sign Up
             </button>
           </div>
         </form>
+        <p className="text-center mt-5 text-gray-500">
+          Already sign up?{" "}
+          <Link to="/login" className=" text-gray-800 font-semibold">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

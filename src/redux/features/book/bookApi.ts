@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { api } from "../../api/apiSlice";
 
 const bookApi = api.injectEndpoints({
@@ -11,6 +13,13 @@ const bookApi = api.injectEndpoints({
     getSingleBook: builder.query({
       query: (id) => `/books/${id}`,
     }),
+    addNewBook: builder.mutation({
+      query: (data) => ({
+        url: `/books/create-book`,
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -18,4 +27,5 @@ export const {
   useGetBooksQuery,
   useGetLatestBooksQuery,
   useGetSingleBookQuery,
+  useAddNewBookMutation,
 } = bookApi;
