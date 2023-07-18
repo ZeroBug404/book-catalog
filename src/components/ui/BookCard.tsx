@@ -25,7 +25,7 @@ const BookCard = ({ book }: any) => {
     };
 
     updateFeature(options);
-    setWishList(true)
+    setWishList(true);
   };
   const handleReadinglist = () => {
     const options = {
@@ -36,7 +36,7 @@ const BookCard = ({ book }: any) => {
     };
 
     updateFeature(options);
-    setReadingList(true)
+    setReadingList(true);
   };
   const handleFinished = () => {
     const options = {
@@ -47,7 +47,7 @@ const BookCard = ({ book }: any) => {
     };
 
     updateFeature(options);
-    setFinishedReading(true)
+    setFinishedReading(true);
   };
 
   return (
@@ -79,18 +79,40 @@ const BookCard = ({ book }: any) => {
                 </button>
               )}
             </div>
-            <button
-              className="bg-red-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2  -translate-y-1/2 transform translate-x-0 opacity-100 text-white my-3 font-semibold"
-              onClick={handleReadinglist}
-            >
-              Plan to read
-            </button>
-            <button
-              className="bg-green-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2   -translate-y-1/2 transform translate-x-0 opacity-100 text-white font-semibold"
-              onClick={handleFinished}
-            >
-              Finished reading
-            </button>
+            <div>
+              {!readingList ? (
+                <button
+                  className="bg-red-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2  -translate-y-1/2 transform translate-x-0 opacity-100 text-white my-3 font-semibold"
+                  onClick={handleReadinglist}
+                >
+                  Plan to read
+                </button>
+              ) : (
+                <button
+                  className="bg-red-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2  -translate-y-1/2 transform translate-x-0 opacity-100 text-white my-3 font-semibold"
+                  onClick={handleReadinglist}
+                >
+                  Remove from read
+                </button>
+              )}
+            </div>
+            <div>
+              {!finishedReading ? (
+                <button
+                  className="bg-green-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2   -translate-y-1/2 transform translate-x-0 opacity-100 text-white font-semibold"
+                  onClick={handleFinished}
+                >
+                  Finished reading
+                </button>
+              ) : (
+                <button
+                  className="bg-green-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2   -translate-y-1/2 transform translate-x-0 opacity-100 text-white font-semibold"
+                  onClick={handleFinished}
+                >
+                  Remove finished
+                </button>
+              )}
+            </div>
           </div>
         )}
       </div>
