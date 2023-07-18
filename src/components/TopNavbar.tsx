@@ -44,7 +44,9 @@ const TopNavbar = () => {
 
         <div className="flex gap-4 items-center justify-between">
           <div>
+            <Link to={'/feature-list'}>
             <BsHandbag className="text-2xl text-blue-800" />
+            </Link>
           </div>
           <div className="border-l border-gray-300 h-8"></div>
           <div>

@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 import Signup from "../pages/Signup";
 import PrivateRoute from "./PrivateRoute";
+import FeatureLists from "../pages/FeatureLists";
 
 const routes = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const routes = createBrowserRouter([
         element: (
           <PrivateRoute>
             <EditBook />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "feature-list",
+        element: (
+          <PrivateRoute>
+            <FeatureLists />
           </PrivateRoute>
         ),
       },

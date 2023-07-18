@@ -42,6 +42,14 @@ const bookApi = api.injectEndpoints({
       }),
       invalidatesTags: ['reviews'],
     }),
+    updateFeature: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/books/feature-update/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      // invalidatesTags: ['reviews'],
+    }),
   }),
 });
 
@@ -52,5 +60,6 @@ export const {
   useAddNewBookMutation,
   useDeleteBookMutation,
   useUpdateBookMutation,
-  useUpdateBookReviewMutation
+  useUpdateBookReviewMutation,
+  useUpdateFeatureMutation
 } = bookApi;
