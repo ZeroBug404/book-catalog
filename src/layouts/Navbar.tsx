@@ -12,10 +12,6 @@ const Navbar = () => {
       route: "About",
       url: "/",
     },
-    // {
-    //   route: "Add New Book",
-    //   url: "/add-book",
-    // },
     {
       route: "All Books",
       url: "/all-books",
