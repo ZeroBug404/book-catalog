@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+import { Link } from "react-router-dom";
 import { useGetLatestBooksQuery } from "../redux/features/book/bookApi";
 import { IBook } from "../types/globalTypes";
 import BookCard from "./ui/BookCard";
@@ -26,7 +27,9 @@ const PopularBooks = () => {
             className="rounded-full bg-blue-500 px-6 py-2 text-white 
          font-semibold"
           >
-            View All
+            <Link to={'/all-books'}>
+              View All
+            </Link>
           </button>
         </div>
       </div>

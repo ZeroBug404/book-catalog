@@ -91,7 +91,7 @@ const BookDetails = () => {
               {data?.data?.title}
             </p>
             <div className="flex gap-2">
-              {user.email == data?.data?.userEmail && (
+              {user.email === data?.data?.userEmail && (
                 <>
                   <button
                     className="bg-green-500 px-6 py-2 text-white font-semibold rounded-md hover:bg-green-700"
