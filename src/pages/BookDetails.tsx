@@ -8,6 +8,7 @@ import {
   useGetSingleBookQuery,
   useUpdateBookReviewMutation,
 } from "../redux/features/book/bookApi";
+import { useAppSelector } from "../redux/hook";
 
 const BookDetails = () => {
   const { id } = useParams();
@@ -18,6 +19,8 @@ const BookDetails = () => {
     refetchOnMountOrArgChange: true,
     pollingInterval: 1000,
   });
+
+  const { user } = useAppSelector((state) => state.user);
 
   const [deleteBook, { isBookLoading, isError, isSuccess }] =
     useDeleteBookMutation();
@@ -64,6 +67,10 @@ const BookDetails = () => {
     toast?.success("Book deleted successfully!");
   };
 
+  console.log('user:',data);
+  console.log(user.email);
+  
+
   return (
     <div className="px-6 flex gap-8">
       <div className="border rounded-lg w-1/3 p-5">
@@ -76,39 +83,43 @@ const BookDetails = () => {
               {data?.data?.title}
             </p>
             <div className="flex gap-2">
-              <button
-                className="bg-green-500 px-6 py-2 text-white font-semibold rounded-md hover:bg-green-700"
-                style={{
-                  backgroundColor: "#3DA72F",
-                  transition: "background-color 0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = "#308125";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = "#3DA72F";
-                }}
-              >
-                <Link to={`/edit-book/${data?.data?._id}`}>Edit</Link>
-              </button>
-              <button
-                className="bg-red-500 px-6 py-2 text-white font-semibold rounded-md hover:bg-green-700"
-                style={{
-                  backgroundColor: "#DD3C2D",
-                  transition: "background-color 0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = "#AC2F23";
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = "#DD3C2D";
-                }}
-                data-modal-target="popup-modal"
-                data-modal-toggle="popup-modal"
-                onClick={openModal}
-              >
-                Delete
-              </button>
+              {user.email == data?.data?.userEmail && (
+                <>
+                  <button
+                    className="bg-green-500 px-6 py-2 text-white font-semibold rounded-md hover:bg-green-700"
+                    style={{
+                      backgroundColor: "#3DA72F",
+                      transition: "background-color 0.3s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = "#308125";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = "#3DA72F";
+                    }}
+                  >
+                    <Link to={`/edit-book/${data?.data?._id}`}>Edit</Link>
+                  </button>
+                  <button
+                    className="bg-red-500 px-6 py-2 text-white font-semibold rounded-md hover:bg-green-700"
+                    style={{
+                      backgroundColor: "#DD3C2D",
+                      transition: "background-color 0.3s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.backgroundColor = "#AC2F23";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.backgroundColor = "#DD3C2D";
+                    }}
+                    data-modal-target="popup-modal"
+                    data-modal-toggle="popup-modal"
+                    onClick={openModal}
+                  >
+                    Delete
+                  </button>
+                </>
+              )}
 
               {modalIsOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
@@ -170,29 +181,31 @@ const BookDetails = () => {
         <div className="border-t px-5 border-r my-3"></div>
         <div>
           <p className="font-semibold text-xl text-gray-700 mb-5">Reviews</p>
-          <div className="mt-4">
-            <form onSubmit={handleSubmit}>
-              <label className="block mb-2 font-bold" htmlFor="review">
-                Write a review:
-              </label>
-              <textarea
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                id="review"
-                name="review"
-                rows="4"
-                value={reviewText}
-                onChange={handleInputChange}
-                placeholder="Enter your review here..."
-              ></textarea>
-              <button
-                type="submit"
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md mb-5"
-                style={{ backgroundColor: "Blue" }}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
+                {
+                  user.email && (<div className="mt-4">
+                  <form onSubmit={handleSubmit}>
+                    <label className="block mb-2 font-bold" htmlFor="review">
+                      Write a review:
+                    </label>
+                    <textarea
+                      className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                      id="review"
+                      name="review"
+                      rows="4"
+                      value={reviewText}
+                      onChange={handleInputChange}
+                      placeholder="Enter your review here..."
+                    ></textarea>
+                    <button
+                      type="submit"
+                      className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md mb-5"
+                      style={{ backgroundColor: "Blue" }}
+                    >
+                      Submit
+                    </button>
+                  </form>
+                </div>)
+                }
           {data?.data?.reviews?.map((review) => (
             <div className="flex gap-2 mb-5">
               <div>

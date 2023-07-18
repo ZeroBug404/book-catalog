@@ -17,6 +17,19 @@ const BookCard = ({ book }: IBook) => {
           onMouseLeave={() => setIsHovered(false)}
         >
           <img src={bookImg} alt="" className="w-48 rounded-xl" />
+          {isHovered && (
+            <div className="absolute top-5 ml-2 flex flex-col">
+              <button className="bg-blue-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2   -translate-y-1/2 transform translate-x-0 opacity-100 text-white mt-3">
+                Add to Wishlist
+              </button>
+              <button className="bg-red-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2  -translate-y-1/2 transform translate-x-0 opacity-100 text-white my-3">
+                Plan to read
+              </button>
+              <button className="bg-green-500 hover:bg-blue-600 transition-all duration-300 rounded-full p-2   -translate-y-1/2 transform translate-x-0 opacity-100 text-white ">
+                Finished reading
+              </button>
+            </div>
+          )}
         </div>
         <div>
           <p className="font-semibold text-lg text-gray-700">{book.title}</p>
