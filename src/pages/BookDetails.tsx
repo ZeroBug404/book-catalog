@@ -1,4 +1,12 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { SetStateAction, JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import bookImg from "../assets/25.jpg";
@@ -15,28 +23,27 @@ const BookDetails = () => {
 
   const navigate = useNavigate();
 
-  const { data, isLoading, error } = useGetSingleBookQuery(id, {
+  const { data } = useGetSingleBookQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 1000,
   });
 
   const { user } = useAppSelector((state) => state.user);
 
-  const [deleteBook, { isBookLoading, isError, isSuccess }] =
+  const [deleteBook] =
     useDeleteBookMutation();
 
   const [
     updateBookReview,
-    { isBookReviewLoading, isBookReviewError, isBookReviewSuccess },
   ] = useUpdateBookReviewMutation();
 
   const [reviewText, setReviewText] = useState("");
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setReviewText(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     console.log(reviewText);
 
     e.preventDefault();
@@ -71,6 +78,7 @@ const BookDetails = () => {
   console.log(user.email);
   
 
+
   return (
     <div className="px-6 flex gap-8">
       <div className="border rounded-lg w-1/3 p-5">
@@ -91,10 +99,10 @@ const BookDetails = () => {
                       backgroundColor: "#3DA72F",
                       transition: "background-color 0.3s",
                     }}
-                    onMouseEnter={(e) => {
+                    onMouseEnter={(e: any) => {
                       e.target.style.backgroundColor = "#308125";
                     }}
-                    onMouseLeave={(e) => {
+                    onMouseLeave={(e: any) => {
                       e.target.style.backgroundColor = "#3DA72F";
                     }}
                   >
@@ -106,10 +114,10 @@ const BookDetails = () => {
                       backgroundColor: "#DD3C2D",
                       transition: "background-color 0.3s",
                     }}
-                    onMouseEnter={(e) => {
+                    onMouseEnter={(e: any) => {
                       e.target.style.backgroundColor = "#AC2F23";
                     }}
-                    onMouseLeave={(e) => {
+                    onMouseLeave={(e: any) => {
                       e.target.style.backgroundColor = "#DD3C2D";
                     }}
                     data-modal-target="popup-modal"
@@ -191,7 +199,7 @@ const BookDetails = () => {
                       className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                       id="review"
                       name="review"
-                      rows="4"
+                      rows={4}
                       value={reviewText}
                       onChange={handleInputChange}
                       placeholder="Enter your review here..."
@@ -206,7 +214,7 @@ const BookDetails = () => {
                   </form>
                 </div>)
                 }
-          {data?.data?.reviews?.map((review) => (
+          {data?.data?.reviews?.map((review: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined) => (
             <div className="flex gap-2 mb-5">
               <div>
                 <img

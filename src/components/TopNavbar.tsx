@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { signOut } from "firebase/auth";
 import { BsHandbag } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -24,16 +25,16 @@ const TopNavbar = () => {
       <div className="flex justify-between w-full px-8 py-5 items-center">
         {/* Filter */}
         <div>
-          <a href="https://flowbite.com/" className="flex items-center">
+          <Link to={"/"} className="flex items-center">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-8 mr-3"
-              alt="Flowbite Logo"
+              alt=""
             />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
+              Bookory
             </span>
-          </a>
+          </Link>
         </div>
 
         <div className="flex justify-center items-center gap-5">

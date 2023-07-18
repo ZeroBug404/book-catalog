@@ -5,11 +5,12 @@
 import BookCard from "../components/ui/BookCard";
 import { useGetBooksQuery } from "../redux/features/book/bookApi";
 import { useAppSelector } from "../redux/hook";
+import { IBook } from "../types/globalTypes";
 
 const AllBooks = () => {
   const { searchData } = useAppSelector((state) => state.book);
 
-  const { data, isLoading, error } = useGetBooksQuery({ searchData });
+  const { data } = useGetBooksQuery({ searchData });
   console.log(data);
   
   return (

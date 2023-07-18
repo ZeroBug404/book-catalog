@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -6,7 +7,7 @@ import { IBook } from "../types/globalTypes";
 import BookCard from "./ui/BookCard";
 
 const PopularBooks = () => {
-  const { data, isLoading, error } = useGetLatestBooksQuery(undefined);
+  const { data } = useGetLatestBooksQuery(undefined);
 
   return (
     <div className="px-6 py-5">

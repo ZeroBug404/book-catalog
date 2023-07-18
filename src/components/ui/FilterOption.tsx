@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -25,13 +28,11 @@ const FilterOption = () => {
 
   const {
     data: booksData,
-    isLoading,
-    error,
   } = useGetBooksQuery({ searchData: "" });
 
-  const [checkboxValue, setCheckboxValue] = useState("");
+  const [, setCheckboxValue] = useState("");
 
-  const handleCheckboxChange = (event) => {
+  const handleCheckboxChange = (event: any) => {
     if (event.target.checked) {
       setCheckboxValue(event.target.nextSibling.textContent);
     } else {
@@ -92,7 +93,7 @@ const FilterOption = () => {
                       className="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
                       aria-labelledby="doubleDropdownButton"
                     >
-                      {booksData?.data?.data?.map((book) => (
+                      {booksData?.data?.data?.map((book: any) => (
                         <li>
                           <div className="flex items-center">
                             <input

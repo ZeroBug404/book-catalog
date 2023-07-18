@@ -25,10 +25,9 @@ const EditBook = () => {
     userEmail: "",
   });
 
-  const [updateBookData, { isLoading, isError, isSuccess }] =
-    useUpdateBookMutation();
+  const [updateBookData, { isError }] = useUpdateBookMutation();
 
-  const { data, isGetBookLoading, error } = useGetSingleBookQuery(id);
+  const { data } = useGetSingleBookQuery(id);
 
   const { user } = useAppSelector((state) => state.user);
 
@@ -56,13 +55,15 @@ const EditBook = () => {
 
     updateBookData(options);
     if (isError) {
-        toast.error("Book Deatil Update faild");
+      toast.error("Book Deatil Update faild");
     }
     setFormData({
       title: "",
       author: "",
       genre: "",
       publicationDate: "",
+      reviews: [],
+      userEmail: "",
     });
 
     toast.success("Book Deatil Updated");
@@ -73,7 +74,9 @@ const EditBook = () => {
         className="w-full max-w-md bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
         onSubmit={handleSubmit}
       >
-        <h2 className="text-2xl font-bold text-center mb-6">Update Book Deatils</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">
+          Update Book Deatils
+        </h2>
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"

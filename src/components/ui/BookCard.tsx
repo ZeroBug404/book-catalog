@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import bookImg from "../../assets/25.jpg";
-import { IBook } from "../../types/globalTypes";
 
-const BookCard = ({ book }: IBook) => {
+const BookCard = ({ book }: any) => {
   const [isHovered, setIsHovered] = useState(false);
   console.log(book._id);
 

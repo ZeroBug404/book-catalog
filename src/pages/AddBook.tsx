@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useAddNewBookMutation } from "../redux/features/book/bookApi";
@@ -13,19 +18,19 @@ const AddBook = () => {
     userEmail: "",
   });
 
-  const [postBookData, { isLoading, isError, isSuccess }] =
+  const [postBookData] =
     useAddNewBookMutation();
 
   const { user } = useAppSelector((state) => state.user);
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     const options = {
@@ -43,6 +48,8 @@ const AddBook = () => {
       author: "",
       genre: "",
       publicationDate: "",
+      reviews: [], 
+      userEmail: "",
     });
 
     toast.success("New Book Added");
